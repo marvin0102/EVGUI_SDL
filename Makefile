@@ -27,13 +27,7 @@ LIB_SRCS := \
 	src/twin_draw.c \
 	src/twin_hull.c \
 	src/twin_pixmap.c \
-	src/twin_timeout.c \
-	libsvgtiny/src/svgColor2.c \
-	libsvgtiny/src/svgtiny.c \
-	libsvgtiny/src/svgtiny_gradient.c \
-	libsvgtiny/src/svgtiny_list.c \
-	libsvgtiny/src/xml2dom.c \
-	libsvgtiny/src/ezxml.c
+	src/twin_timeout.c 
 
 LIB_OBJS := $(patsubst %.c, %.o, $(LIB_SRCS))
 PRODUCTS := libtwin$(LIBSUF)
@@ -45,8 +39,7 @@ DEMO_SRCS = \
 	apps/twin_demoline.c \
 	apps/twin_hello.c \
 	apps/twin_text.c \
-	apps/twin_demo.c \
-	apps/twin_svg.c
+	apps/twin_demo.c
 
 DEMO_OBJS = $(patsubst %.c, %.o, $(DEMO_SRCS))
 
@@ -69,7 +62,7 @@ all: $(PRODUCTS) xdemo
 xdemo: $(PRODUCTS) $(DEMO_OBJS) $(X_BACKEND_OBJS)
 	$(CC) $(CFLAGS) -o $@ \
 		$(DEMO_OBJS) $(X_BACKEND_SRCS) $(PRODUCTS) \
-		-lX11 -lm
+		-L/opt/X11/lib -lX11 -lm
 
 fbdemo: $(PRODUCTS) $(DEMO_OBJS) $(FB_BACKEND_OBJS)
 	$(CC) $(CFLAGS) -o $@ \
@@ -83,8 +76,6 @@ CFLAGS = \
 	-I include \
 	-I backend \
 	-I apps \
-	-I libsvgtiny/src \
-	-I libsvgtiny/inc \
 	-g -DEZXML_NOMMAP
 
 %.o: %.c

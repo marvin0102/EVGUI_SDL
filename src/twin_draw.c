@@ -3,7 +3,7 @@
  * Copyright © 2004 Keith Packard <keithp@keithp.com>
  * All rights reserved.
  */
-
+#include <machine/endian.h>
 #include "twinint.h"
 
 /* op, src, dst */
@@ -629,7 +629,7 @@ void twin_composite (twin_pixmap_t	*dst,
 static twin_argb32_t _twin_apply_alpha(twin_argb32_t v)
 {
     uint16_t t1, t2, t3;
-    twin_a8_t alpha = twin_get_8(v, (__BYTE_ORDER == __BIG_ENDIAN) ? 0 : 24);
+    twin_a8_t alpha = twin_get_8(v, (BYTE_ORDER == BIG_ENDIAN) ? 0 : 24);
 
     /* clear RGB data if alpha is zero */
 
@@ -638,7 +638,7 @@ static twin_argb32_t _twin_apply_alpha(twin_argb32_t v)
 
     /* twin needs ARGB format */
 
-    if (__BYTE_ORDER == __BIG_ENDIAN)
+    if (BYTE_ORDER == BIG_ENDIAN)
 	return alpha << 24 |
 	    twin_int_mult(twin_get_8(v, 24), alpha, t1) << 16 |
 	    twin_int_mult(twin_get_8(v, 16), alpha, t2) << 8 |
