@@ -10,6 +10,7 @@
 #include "twin.h"
 #include "twin_def.h"
 #include <string.h>
+#include <stdio.h>
 
 #define maybe_unused __attribute__((unused))
 

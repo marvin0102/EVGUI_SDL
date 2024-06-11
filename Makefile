@@ -62,7 +62,7 @@ all: $(PRODUCTS) xdemo
 xdemo: $(PRODUCTS) $(DEMO_OBJS) $(X_BACKEND_OBJS)
 	$(CC) $(CFLAGS) -o $@ \
 		$(DEMO_OBJS) $(X_BACKEND_SRCS) $(PRODUCTS) \
-		-L/opt/X11/lib -lX11 -lm
+		-l SDL2-2.0.0 -l SDL2_image-2.0.0 -l SDL2_ttf-2.0.0
 
 fbdemo: $(PRODUCTS) $(DEMO_OBJS) $(FB_BACKEND_OBJS)
 	$(CC) $(CFLAGS) -o $@ \
