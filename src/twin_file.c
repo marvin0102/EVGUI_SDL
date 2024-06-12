@@ -25,7 +25,7 @@ _twin_file_order (twin_queue_t *a, twin_queue_t *b)
     return TWIN_AT;
 }
 
-void
+int 
 _twin_run_file (twin_time_t delay)
 {
     twin_file_t	*first;
@@ -43,7 +43,7 @@ _twin_run_file (twin_time_t delay)
 	for (file = first, n = 0; file; file = (twin_file_t *) file->queue.order, n++);
 	polls = malloc (n * sizeof (struct pollfd));
 	if (!polls)
-	    return;
+	    return 1;
 	for (file = first, i = 0; file; file = (twin_file_t *) file->queue.order, i++)
 	{
 	    short   events = 0;
@@ -71,11 +71,14 @@ _twin_run_file (twin_time_t delay)
 	    }
 	_twin_queue_review_order (&first->queue);
 	free (polls);
+		return 1;
     }
     else
     {
+		printf("finish\n");
 	if (delay > 0)
 	    usleep (delay * 1000);
+	return 0;
     }
 }
 

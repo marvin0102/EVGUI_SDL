@@ -74,6 +74,7 @@ twin_x11_read_events (int maybe_unused file, twin_file_op_t maybe_unused ops,
 	    break;
 	case SDL_QUIT:
 		// printf("quit\n");
+		twin_x11_destroy(tx);
 		return 0;
 	case SDL_MOUSEBUTTONDOWN:
 	case SDL_MOUSEBUTTONUP:

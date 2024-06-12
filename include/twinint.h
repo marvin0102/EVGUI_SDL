@@ -438,7 +438,7 @@ _twin_queue_set_order (twin_queue_t	**head);
 void
 _twin_queue_review_order (twin_queue_t	*first);
 
-void
+int
 _twin_run_file (twin_time_t delay);
 
 void
