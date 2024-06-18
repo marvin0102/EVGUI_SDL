@@ -20,7 +20,9 @@ typedef struct _twin_x11 {
     SDL_Window	*win;
     int         dpy;
     int		    depth;
+    int         *pixels;
     SDL_Renderer    *render;
+    SDL_Texture     *texture;
     twin_coord_t     width;
     twin_coord_t     height;
     int		    image_y;
