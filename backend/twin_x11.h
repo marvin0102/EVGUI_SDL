@@ -12,8 +12,8 @@
 // #include <X11/Xlib.h>
 // #include <X11/Xutil.h>
 // #include <X11/Xatom.h>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_render.h>
+#include <SDL.h>
+#include <SDL_render.h>
 
 typedef struct _twin_x11 {
     twin_screen_t   *screen;

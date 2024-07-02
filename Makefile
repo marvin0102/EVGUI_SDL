@@ -62,7 +62,7 @@ all: $(PRODUCTS) xdemo
 xdemo: $(PRODUCTS) $(DEMO_OBJS) $(X_BACKEND_OBJS)
 	$(CC) $(CFLAGS) -o $@ \
 		$(DEMO_OBJS) $(X_BACKEND_SRCS) $(PRODUCTS) \
-		-l SDL2-2.0.0 -l SDL2_image-2.0.0 -l SDL2_ttf-2.0.0
+		$(shell sdl2-config --libs)
 
 fbdemo: $(PRODUCTS) $(DEMO_OBJS) $(FB_BACKEND_OBJS)
 	$(CC) $(CFLAGS) -o $@ \
@@ -76,7 +76,8 @@ CFLAGS = \
 	-I include \
 	-I backend \
 	-I apps \
-	-g -DEZXML_NOMMAP
+	-g -DEZXML_NOMMAP \
+    $(shell sdl2-config --cflags)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -o $@ -c $< -lm
